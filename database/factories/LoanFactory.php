@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Loan;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LoanFactory extends Factory
@@ -23,6 +24,13 @@ class LoanFactory extends Factory
     {
         return [
             // TODO: Complete factory
+            'amount' => $this->faker->randomNumber(),
+            'terms' => $this->faker->randomNumber(),
+            'outstanding_amount' => $this->faker->randomNumber(),
+            'currency_code' => \App\Models\Loan::CURRENCY_VND,
+            'processed_at' => $this->faker->date(),
+            'status' => \App\Models\Loan::STATUS_DUE,
+            'user_id' => fn () => User::factory()->create(),
         ];
     }
 }

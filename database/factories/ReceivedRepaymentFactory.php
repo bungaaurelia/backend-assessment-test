@@ -3,17 +3,18 @@
 namespace Database\Factories;
 
 use App\Models\Loan;
+use App\Models\ReceivedRepayment;
 use App\Models\ScheduledRepayment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ScheduledRepaymentFactory extends Factory
+class ReceivedRepaymentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ScheduledRepayment::class;
+    protected $model = ReceivedRepayment::class;
 
     /**
      * Define the model's default state.
@@ -24,12 +25,10 @@ class ScheduledRepaymentFactory extends Factory
     {
         return [
             // TODO: Complete factory
-            'loan_id' => \App\Models\Loan::factory(),
+            'loan_id' => Loan::factory(),
             'amount' => $this->faker->randomNumber(),
-            'outstanding_amount' => $this->faker->randomNumber(),
             'currency_code' => \App\Models\Loan::CURRENCY_VND,
-            'due_date' => $this->faker->date(),
-            'status' => \App\Models\ScheduledRepayment::STATUS_DUE,
+            'received_at' => $this->faker->date(),
         ];
     }
 }
